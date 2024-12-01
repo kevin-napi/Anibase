@@ -1,0 +1,53 @@
+// Color Vars
+
+$primary-color: #FE5F55;
+$primary-hover-color: #F0B67F;
+$success-color: #C7EFCF;
+$success-hover-color: #C7EFCF;
+$title-color: #333;
+$bg-color: wheat;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $bg-color;
+    
+}
+
+
+.content {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h1 {
+        color: $primary-color;
+    }
+
+    h4 {
+        color: #666;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+
+        th,td {
+            padding:10px;
+            border: 1px solid #ccc;
+
+            th {
+                background-color: #f0f0f0;
+                color: #333;
+            }
+        }
+
+
+    }
+}
