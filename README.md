@@ -4,6 +4,8 @@
 
 Anibase uses the Jikan API to fetch data about anime, including titles, summaries, ratings, and other related information. The API provides access to various endpoints, allowing Anibase users to browse anime information, search for specific shows, and get details like episodes, characters, and reviews, making it a comprehensive tool for anime enthusiasts.
 
+Website Implementation: https://kevinnapi.pythonanywhere.com/
+
 **TODO**
 - Create current running shows in the front page.
 - Implement Jikan API.
@@ -23,3 +25,4 @@ You will need:
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
 pip install -r requirements.txt
+
