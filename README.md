@@ -7,7 +7,9 @@ Anibase uses the Jikan API to fetch data about anime, including titles, summarie
 **TODO**
 - Create current running shows in the front page.
 - Implement Jikan API.
+  - Make data readable.
 - Implement search function.
+  - Search Name, Show, Character, Character BD.
 
 ## Getting Started
 
