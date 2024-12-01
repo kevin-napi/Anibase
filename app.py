@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from jikan import get_current_season
 app = Flask(__name__)
 Scss(app)
 
@@ -11,10 +12,11 @@ db = SQLAlchemy(app)
 
 # 1 Row of anime
 class Anime(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    content = db.Column(db.String(100), nullable = True)
+    id = db.Column(db.Integer, primary_key = True) #change to anime id provided by mal
+    content = db.Column(db.String(100), nullable = True) #content = user input / change to anime name
     complete = db.Column(db.Integer, default = 0)
     created = db.Column(db.DateTime, default = datetime.now())
+    #rating
     
     def __repr__(self) -> str:
         return f"Anime: {self.id}"
