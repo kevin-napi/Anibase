@@ -1,48 +1,48 @@
 from flask import Flask, render_template, redirect, request
 from flask_scss import Scss
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from models import Anime, db
 from datetime import datetime
-from jikan import get_current_season
+from jikan import fetch_season_animes
+
 app = Flask(__name__)
 Scss(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-db = SQLAlchemy(app)
 
-# 1 Row of anime
-class Anime(db.Model):
-    id = db.Column(db.Integer, primary_key = True) #change to anime id provided by mal
-    content = db.Column(db.String(100), nullable = True) #content = user input / change to anime name
-    complete = db.Column(db.Integer, default = 0)
-    created = db.Column(db.DateTime, default = datetime.now())
-    #rating
-    
-    def __repr__(self) -> str:
-        return f"Anime: {self.id}"
-    
+migrate = Migrate(app,db)
+
+db.init_app(app)
 
 with app.app_context():
         db.create_all()
         
+def get_season_animes():
+    dict_season_animes = fetch_season_animes() # Dictionary of all seasonal animes
+    
+    
+    for anime in dict_season_animes:  # Assuming it's a list of dictionaries
+        if not Anime.query.filter_by(mal_id=anime['mal_id']).first():  # Avoid duplicates
+            new_anime = Anime(
+                mal_id = anime['mal_id'],
+                title = anime['title'],
+                score = anime.get('score', 0),  # Default score to 0 if missing
+                synopsis = anime['synopsis'],
+                url = anime['url'],
+                img_url = anime['img_url']
+            )
+            db.session.add(new_anime)
+
+    db.session.commit()
+    
 # Routes to webpages
 @app.route("/",methods=["POST","GET"])
 def index():
-    # Add an anime
-    if request.method == "POST":
-        current_anime = request.form['content']
-        new_anime = Anime(content = current_anime)
-        try:
-            db.session.add(new_anime)
-            db.session.commit()
-            return redirect("/")
-        except Exception as e:
-            print(f"ERROR: {e}")
-            return f"ERROR: {e}"
-    # See all current anime
-    else:
-        animes = Anime.query.order_by(Anime.id).all()
-        return render_template("index.html", animes=animes)
+    get_season_animes()
+    animes = Anime.query.all()
+    return render_template("index.html", animes=animes)
     
     
 #Delete Item

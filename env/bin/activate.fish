@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/kevin-napi/projects/projects/anirectwo/env"
+set -gx VIRTUAL_ENV "/home/kevin-napi/projects/projects/anibase/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

@@ -1,4 +1,4 @@
-#!/home/kevin-napi/projects/projects/anirectwo/env/bin/python3
+#!/home/kevin-napi/projects/projects/anibase/env/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'pyScss==1.4.0','console_scripts','pyscss'
 import re
 import sys

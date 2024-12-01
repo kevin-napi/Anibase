@@ -1,44 +1,23 @@
-{%extends 'base.html'%}
-
-{% block head%}
-<title>Anime 1</title> 
-{% endblock %}
-
-
-{% block body %}
-<div class="content">
-    <h1>Anime List</h1>
-
-
-    {% if animes | length < 1 %}
-
-    <h3>There are no animes..</h3>
-    
-    {% else %}
-
-    <table>
-        <tr>
-            <th>Anime 1</th>
-            <th>Anime 2</th>
-            <th>Anime 3</th>
-        </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Season Anime</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Current Season Anime</h1>
+    <div class="anime-grid">
         {% for anime in animes %}
-            <tr> 
-                <td>{{anime.content}}</td>
-                <td>{{anime.created.strftime("%Y-%m-%d")}}</td>
-                <td>
-                    <a href="/delete/{{anime.id}}">Delete</a>
-                    </br>
-                    <a href="/edit/{{anime.id}}">Edit</a>
-                </td>
-            </tr>
+        <div class="anime-card">
+            <img src="{{ anime.img_url }}" alt="{{ anime.title }}">
+            <h2>{{ anime.title }}</h2>
+            <p>Score: {{ anime.score }}</p>
+            <p>{{ anime.synopsis }}</p>
+            <a href="{{ anime.url }}" target="_blank">More Info</a>
+        </div>
         {% endfor %}
-    </table>
-    {% endif %}
-    <form action="/" method="POST">
-        <input type="text" name="content" id="content">
-        <input type="submit" value="Add Anime" id="btn_add">
-    </form>
-</div>
-
-{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,53 +1,111 @@
-// Color Vars
-
-$primary-color: #FE5F55;
-$primary-hover-color: #F0B67F;
-$success-color: #C7EFCF;
-$success-hover-color: #C7EFCF;
-$title-color: #333;
-$bg-color: wheat;
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: $bg-color;
-    
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-
-.content {
-    max-width: 800px;
-    margin: 50px auto;
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
     text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Anime Grid */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.anime-card {
+    position: relative; // Allow positioning of the 'More Info' button
+    display: flex;
+    flex-direction: column; // Stack the contents vertically
+    justify-content: flex-start;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.anime-card img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.anime-card h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.anime-card p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;         // Limit to 3 lines
+    -webkit-box-orient: vertical;  // Ensure text is displayed vertically
+    overflow: hidden;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.anime-card a {
+    position: absolute;  // Position the 'More Info' button above the text
+    top: 10px;           // Adjust top positioning
+    left: 50%;
+    transform: translateX(-50%); // Center the button horizontally
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #0056b3; // Darken the button on hover
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
 
     h1 {
-        color: $primary-color;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .anime-grid {
+        grid-template-columns: 1fr;
     }
 
-    h4 {
-        color: #666;
+    h1 {
+        font-size: 1.25rem;
     }
 
-    table {
-        width: 100%;
-        margin-top: 20px;
-        border-collapse: collapse;
-
-        th,td {
-            padding:10px;
-            border: 1px solid #ccc;
-
-            th {
-                background-color: #f0f0f0;
-                color: #333;
-            }
-        }
-
-
+    .anime-card {
+        max-width: 90%;
     }
 }
